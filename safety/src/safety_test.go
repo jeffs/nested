@@ -32,3 +32,22 @@ func TestAppendReuse(t *testing.T) {
 		}
 	}
 }
+
+func TestMakeAppender(t *testing.T) {
+	append34 := MakeAppender(List{3, 4})
+	want := List{1, 2, 3, 4}
+	if got := append34(List{1, 2}); !reflect.DeepEqual(got, want) {
+		t.Errorf("append34(List{1, 2}) = %v; want %v", got, want)
+	}
+}
+
+func TestMakeAppenderDangle(t *testing.T) {
+	append34 := func() func(List) List {
+		suffix := List{3, 4}
+		return MakeAppender(suffix)
+	}()
+	want := List{1, 2, 3, 4}
+	if got := append34(List{1, 2}); !reflect.DeepEqual(got, want) {
+		t.Errorf("append34(List{1, 2}) = %v; want %v", got, want)
+	}
+}
