@@ -58,6 +58,16 @@ void test_make_appender_move() {
     assert((List{1, 2, 3, 4} == append34({1, 2}))); // OK
 }
 
+// $ ./target/cpp/safety
+// [1]    23388 segmentation fault  ./target/cpp/safety
+void test_make_appender_mutate() {
+    List suffix{3, 4};
+    auto append34 = make_appender_move(move(suffix));
+    assert((List{1, 2, 3, 4} == append34({1, 2}))); // OK
+    suffix[0] = 5;  // Undefined behavior, because suffix was moved
+    assert((List{1, 2, 3, 4} == append34({1, 2}))); // Meaningless, because UB
+}
+
 int main() {
     test_append();
     test_append_repeatedly();
