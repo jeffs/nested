@@ -39,7 +39,7 @@ void test_append_reuse() {
     List items{1};
 //  assert((List{1, 2} == append(items, {2})));        // Won't compile.
     assert((List{1, 2} == append(move(items), {2})));  // OK
-//  assert((List{1, 2} == append(move(items), {2})));  // FAIL
+    assert((List{1, 2} == append(move(items), {2})));  // FAIL
 }
 
 void test_make_appender() {
@@ -61,8 +61,6 @@ void test_make_appender_move() {
 int main() {
     test_append();
     test_append_repeatedly();
-    test_append_reuse();
     test_make_appender();
-//  test_make_appender_dangle();
     test_make_appender_move();
 }

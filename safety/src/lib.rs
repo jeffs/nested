@@ -26,11 +26,11 @@ mod tests {
     }
 
     #[test]
-    #[rustfmt::skip]
+    #[cfg(ignore)]
     fn test_append_reuse() {
         let items = vec![1];
         assert_eq!(vec![1, 2], append(items, &[2])); // OK
-    //  assert_eq!(vec![1, 2], append(items, &[2])); // Won't compile.
+        assert_eq!(vec![1, 2], append(items, &[2])); // Won't compile.
     }
 
     #[test]
@@ -39,14 +39,13 @@ mod tests {
         assert_eq!(vec![1, 2, 3, 4], append34(vec![1, 2]));
     }
 
-    // Won't compile.
     #[test]
-    #[rustfmt::skip]
+    #[cfg(ignore)]
     fn test_make_appender_dangle() {
-    //  let append34 = {
-    //      let suffix = vec![3, 4];
-    //      make_appender(&suffix)
-    //  };
-    //  assert_eq!(vec![1, 2, 3, 4], append34(vec![1, 2]));
+        let append34 = {
+            let suffix = vec![3, 4];
+            make_appender(&suffix) // Won't compile.
+        };
+        assert_eq!(vec![1, 2, 3, 4], append34(vec![1, 2]));
     }
 }
