@@ -5,6 +5,10 @@ pub fn append(mut items: List, suffix: &[i32]) -> List {
     items
 }
 
+pub fn make_appender(suffix: &[i32]) -> impl Fn(List) -> List + '_ {
+    move |prefix| append(prefix, suffix)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -22,10 +26,27 @@ mod tests {
     }
 
     #[test]
+    #[rustfmt::skip]
     fn test_append_reuse() {
         let items = vec![1];
         assert_eq!(vec![1, 2], append(items, &[2])); // OK
+    //  assert_eq!(vec![1, 2], append(items, &[2])); // Won't compile.
+    }
 
-//      assert_eq!(vec![1, 2], append(items, &[2])); // Won't compile.
+    #[test]
+    fn test_make_appender() {
+        let append45 = make_appender(&[3, 4]);
+        assert_eq!(vec![1, 2, 3, 4], append45(vec![1, 2]));
+    }
+
+    // Won't compile.
+    #[test]
+    #[rustfmt::skip]
+    fn test_make_appender_dangle() {
+    //  let append45 = {
+    //      let suffix = vec![3, 4];
+    //      make_appender(&suffix)
+    //  };
+    //  assert_eq!(vec![1, 2, 3, 4], append45(vec![1, 2]));
     }
 }
