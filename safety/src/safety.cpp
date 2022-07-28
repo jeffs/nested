@@ -23,7 +23,15 @@ void test_concatenate_repeatedly() {
     assert((List{8, 6, 7, 5, 3, 0, 9} == items));
 }
 
+void test_concatenate_reuse() {
+    List items{1};
+//  assert((List{1, 2} == concatenate(items, {2})));        // Won't compile.
+    assert((List{1, 2} == concatenate(move(items), {2})));  // OK
+//  assert((List{1, 2} == concatenate(move(items), {2})));  // Failure!
+}
+
 int main() {
     test_concatenate();
     test_concatenate_repeatedly();
+    test_concatenate_reuse();
 }

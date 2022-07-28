@@ -21,4 +21,11 @@ mod tests {
             .fold(Vec::new(), concatenate);
         assert_eq!(vec![8, 6, 7, 5, 3, 0, 9], items);
     }
+
+    #[test]
+    fn test_concatenate_reuse() {
+        let items = vec![1];
+        assert_eq!(vec![1, 2], concatenate(items, vec![2])); // OK
+        //assert_eq!(vec![1, 2], concatenate(items, vec![2])); // Won't compile.
+    }
 }
