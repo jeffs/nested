@@ -1,11 +1,9 @@
-type List = Vec<i32>;
-
-pub fn append(mut items: List, suffix: &[i32]) -> List {
+pub fn append(mut items: Vec<i32>, suffix: &[i32]) -> Vec<i32> {
     items.extend_from_slice(suffix);
     items
 }
 
-pub fn make_appender(suffix: &[i32]) -> impl Fn(List) -> List + '_ {
+pub fn make_appender(suffix: &[i32]) -> impl Fn(Vec<i32>) -> Vec<i32> + '_ {
     move |prefix| append(prefix, suffix)
 }
 

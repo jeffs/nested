@@ -1,13 +1,11 @@
 package safety
 
-type List = []int
-
-func Append(items, suffix List) List {
+func Append(items, suffix []int) []int {
 	return append(items, suffix...)
 }
 
-func MakeAppender(suffix List) func(List) List {
-	return func(items List) List {
+func MakeAppender(suffix []int) func([]int) []int {
+	return func(items []int) []int {
 		return Append(items, suffix)
 	}
 }

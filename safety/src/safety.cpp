@@ -5,67 +5,69 @@
 
 using List = std::vector<int>;
 
-List append(List&& items, List const& suffix) {
+std::vector<int> append(
+        std::vector<int>&& items,
+        std::vector<int> const& suffix) {
     items.insert(items.end(), suffix.begin(), suffix.end());
     return items;
 }
 
-auto make_appender(List const& suffix) {
-    return [&](List&& items) {
+auto make_appender(std::vector<int> const& suffix) {
+    return [&](std::vector<int>&& items) {
         return append(move(items), suffix);
     };
 }
 
-auto make_appender_move(List&& suffix) {
-    return [suffix = move(suffix)](List&& items) {
+auto make_appender_move(std::vector<int>&& suffix) {
+    return [suffix = move(suffix)](std::vector<int>&& items) {
         return append(move(items), suffix);
     };
 }
 
 void test_append() {
-    assert((List{1, 2, 3, 4} == append({1, 2}, {3, 4})));
+    assert((std::vector<int>{1, 2, 3, 4} == append({1, 2}, {3, 4})));
 }
 
 void test_append_repeatedly() {
-    std::array<List, 3> suffixes = {{{8, 6}, {7, 5}, {3, 0, 9}}};
+    std::array<std::vector<int>, 3> suffixes = {{{8, 6}, {7, 5}, {3, 0, 9}}};
     auto const items = std::accumulate(
             suffixes.begin(), suffixes.end(),
-            List{},
+            std::vector<int>{},
             append);
-    assert((List{8, 6, 7, 5, 3, 0, 9} == items));
+    assert((std::vector<int>{8, 6, 7, 5, 3, 0, 9} == items));
 }
 
 void test_append_reuse() {
-    List items{1};
-//  assert((List{1, 2} == append(items, {2})));        // Won't compile.
-    assert((List{1, 2} == append(move(items), {2})));  // OK
-    assert((List{1, 2} == append(move(items), {2})));  // FAIL
+    std::vector<int> items{1};
+//  assert((std::vector<int>{1, 2} == append(items, {2})));  // Won't compile.
+    assert((std::vector<int>{1, 2} == append(move(items), {2})));  // OK
+    assert((std::vector<int>{1, 2} == append(move(items), {2})));  // FAIL
 }
 
 void test_make_appender() {
-    List suffix{3, 4};
+    std::vector<int> suffix{3, 4};
     auto append34 = make_appender(suffix);
-    assert((List{1, 2, 3, 4} == append34({1, 2})));
+    assert((std::vector<int>{1, 2, 3, 4} == append34({1, 2})));
 }
 
 void test_make_appender_dangle() {
     auto append34 = make_appender({3, 4});
-    assert((List{1, 2, 3, 4} == append34({1, 2}))); // FAIL: Undefined behavior
+    assert((std::vector<int>{1, 2, 3, 4} == append34({1, 2}))); // FAIL: UB
 }
 
 void test_make_appender_move() {
     auto append34 = make_appender_move({3, 4});
-    assert((List{1, 2, 3, 4} == append34({1, 2}))); // OK
+    assert((std::vector<int>{1, 2, 3, 4} == append34({1, 2}))); // OK
 }
 
 // $ ./target/cpp/safety
 // [1]    23388 segmentation fault  ./target/cpp/safety
 void test_make_appender_mutate() {
-    List suffix{3, 4};
+    std::vector<int> suffix{3, 4};
     auto append34 = make_appender_move(move(suffix));
-    assert((List{1, 2, 3, 4} == append34({1, 2}))); // OK
+    assert((std::vector<int>{1, 2, 3, 4} == append34({1, 2}))); // OK
     suffix[0] = 5;  // Undefined behavior, because suffix was moved
-    assert((List{1, 2, 3, 4} == append34({1, 2}))); // Meaningless, because UB
+    assert((std::vector<int>{1, 2, 3, 4} == append34({1, 2}))); // Maybe!
 }
 
 int main() {
