@@ -1,4 +1,6 @@
-pub fn concatenate(mut items: Vec<i32>, mut suffix: Vec<i32>) -> Vec<i32> {
+type List = Vec<i32>;
+
+pub fn concatenate(mut items: List, mut suffix: List) -> List {
     items.append(&mut suffix);
     items
 }

@@ -1,5 +1,7 @@
 package safety
 
-func Concatenate(items, suffix []int) []int {
+type List []int
+
+func Concatenate(items, suffix List) List {
 	return append(items, suffix...)
 }
