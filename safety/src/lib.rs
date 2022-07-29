@@ -4,7 +4,7 @@ pub fn append(mut items: Vec<i32>, suffix: &[i32]) -> Vec<i32> {
 }
 
 pub fn make_appender(suffix: &[i32]) -> impl Fn(Vec<i32>) -> Vec<i32> + '_ {
-    move |prefix| append(prefix, suffix)
+    move |items| append(items, suffix)
 }
 
 #[cfg(test)]
