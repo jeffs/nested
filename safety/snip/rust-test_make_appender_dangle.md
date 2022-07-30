@@ -1,0 +1,17 @@
+Rust refuses to compile, rather than let a pointer dangle.
+
+    $ cargo test test_make_appender_dangle
+       Compiling capture v0.1.0 (/home/jeff/git/nested/safety)
+    error[E0597]: `suffix` does not live long enough
+      --> src/lib.rs:44:27
+       |
+    42 |         let append34 = {
+       |             -------- borrow later stored here
+    43 |             let suffix = vec![3, 4];
+    44 |             make_appender(&suffix) // Won't compile.
+       |                           ^^^^^^^ borrowed value does not live long enough
+    45 |         };
+       |         - `suffix` dropped here while still borrowed
+
+    For more information about this error, try `rustc --explain E0597`.
+    error: could not compile `capture` due to previous error
