@@ -3,8 +3,6 @@
 #include <numeric>  // accumulate
 #include <vector>
 
-using List = std::vector<int>;
-
 std::vector<int> append(
         std::vector<int>&& items,
         std::vector<int> const& suffix) {
