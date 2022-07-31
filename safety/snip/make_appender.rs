@@ -1,7 +1,7 @@
 // Rust make_appender
 
 pub fn make_appender(suffix: &[i32]) -> impl Fn(Vec<i32>) -> Vec<i32> + '_ {
-    move |items| append(items, suffix)
+    |items| append(items, suffix)
 }
 
 fn test_make_appender() {
