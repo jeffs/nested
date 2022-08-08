@@ -1,33 +1,6 @@
 import { AssertionFailure } from "./assert.js";
 import testCreateElement from "./testCreateElement.js";
 
-const style = document.createElement("style");
-style.append(`
-  body {
-    background-color: #333;
-  }
-  table {
-    border-collapse: collapse;
-    width: 80%;
-  }
-  td, th {
-    border: 1px solid black;
-    padding: 4px;
-  }
-  td {
-    background-color: lightgray;
-  }
-  th {
-    background-color: gray;
-  }
-  tr.fail * {
-    background-color: darkred;
-    color: lightgray;
-  }
-`);
-
-document.head.append(style);
-
 const table = document.createElement("table");
 const header = document.createElement("tr");
 header.append(

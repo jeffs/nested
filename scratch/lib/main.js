@@ -1,10 +1,15 @@
-import createElement from './createElement.js';
+import createElement from "./createElement.js";
 
-const ul = createElement([
-  "ul",
-  { color: "blue", listStyleType: "circle" },
-  ["li", "first child"],
-  ["li", "second child"],
-]);
+let count = 0;
+const label = createElement(["p"]);
+const button = createElement(["button", "Click me"]);
+button.addEventListener("click", function (evt) {
+  if (count === 0) {
+    document.body.append(label);
+  }
+  label.innerText = `Count: ${++count}`;
+});
 
-document.body.append(ul);
+const hi = createElement(["h1", "Hello, world."]);
+
+document.body.append(hi, button);
