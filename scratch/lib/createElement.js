@@ -1,3 +1,7 @@
+// Prototype of raw objects; as opposed to DOM elements, arrays, or other
+// Object subclasses.
+const rawObjectPrototype = Object.getPrototypeOf({});
+
 // Returns a new DOM element having the specified tag name, optional styles,
 // and children.  For example:
 //
@@ -16,10 +20,10 @@ export default function createElement([tagName, ...rest]) {
   const elem = document.createElement(tagName);
   if (rest.length) {
     const first = rest[0];
-    if (Array.isArray(first)) {
-      elem.append(createElement(first));
-    } else if (typeof first === "object") {
+    if (Object.getPrototypeOf(first) === rawObjectPrototype) {
       Object.assign(elem.style, first);
+    } else if (Array.isArray(first)) {
+      elem.append(createElement(first));
     } else {
       elem.append(first);
     }
