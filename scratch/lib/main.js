@@ -1,15 +1,16 @@
+import ItemList from "./ItemList.js";
 import createElement from "./createElement.js";
 
-let count = 0;
 const label = createElement(["p"]);
-const button = createElement(["button", "Click me"]);
+const button = createElement(["button", "Add item"]);
+const list = ItemList();
 button.addEventListener("click", function (evt) {
-  if (count === 0) {
-    document.body.append(label);
-  }
-  label.innerText = `Count: ${++count}`;
+  list.grow();
 });
 
-const hi = createElement(["h1", "Hello, world."]);
+document.body.append(button, list.node());
 
-document.body.append(hi, button);
+// XXX
+for (let i = 0; i < 10; ++i) {
+  list.grow();
+}
