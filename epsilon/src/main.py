@@ -1,8 +1,18 @@
+import sys
+
+epsilon = sys.float_info.epsilon
+ordered = [epsilon / 3, epsilon / 2, 1]
+unordered = set(ordered)
+print(sum(ordered))   # 1.0000000000000002
+print(sum(unordered)) # 1.0
+
+sys.exit(0)
+
 from math import ulp
 
 delta = ulp(1) / 2  # Half the value of the least significant bit of 1.0.
-values = (delta, delta, 1)
-assert sum(values) != sum(reversed(values))  # 1.0 != 1.0000000000000002
+ordered = (delta, delta, 1)
+assert sum(ordered) != sum(reversed(values))  # 1.0 != 1.0000000000000002
 
 s, t = "Hello", "World"
 assert s + t != t + s  # "HelloWorld" != "WorldHello"
