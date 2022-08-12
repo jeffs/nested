@@ -1,0 +1,2 @@
+# Substack code blocks wrap after 63 columns.
+max_width = 63
