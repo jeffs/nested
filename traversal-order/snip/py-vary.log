@@ -1,0 +1,5 @@
+$ for _ in `seq 8`; do
+python3 -c 'print({"Hello", "World"})'
+done | sort | uniq -c
+      5 {'Hello', 'World'}
+      3 {'World', 'Hello'}

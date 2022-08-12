@@ -3,10 +3,12 @@ CXXFLAGS = -std=c++20 -pedantic -Wall -Wextra
 
 .PHONY: all clean run
 
-all: target/cpp/main
+all: target/cpp/floats target/cpp/words
 
-run: target/cpp/main
-	$<
+run: target/cpp/floats target/cpp/words
+	target/cpp/floats
+	target/cpp/words
+	
 
 clean:
 	rm -fr target/cpp
