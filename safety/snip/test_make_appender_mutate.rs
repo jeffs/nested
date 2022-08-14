@@ -1,5 +1,3 @@
-// Rust test_make_appender_mutate
-
 fn test_make_appender_mutate() {
     let mut suffix = [3, 4];
     let append34 = make_appender(&suffix);

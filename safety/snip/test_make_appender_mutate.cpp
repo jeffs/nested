@@ -1,5 +1,3 @@
-// C++ test_make_appender_mutate
-
 void test_make_appender_mutate() {
     std::vector<int> suffix{3, 4};
     auto append34 = make_appender_move(move(suffix));

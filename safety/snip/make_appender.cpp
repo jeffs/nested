@@ -1,5 +1,3 @@
-// C++ make_appender
-
 auto make_appender(std::vector<int> const& suffix) {
     return [&](std::vector<int>&& items) {
         return append(move(items), suffix);

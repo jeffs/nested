@@ -1,5 +1,3 @@
-// Go TestMakeAppenderDangle
-
 func TestMakeAppenderDangle(t *testing.T) {
 	append34 := func() func([]int) []int {
 		suffix := []int{3, 4}

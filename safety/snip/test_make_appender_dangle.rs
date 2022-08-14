@@ -1,5 +1,3 @@
-// Rust test_make_appender_dangle
-
 fn test_make_appender_dangle() {
     let append34 = {
         let suffix = vec![3, 4];

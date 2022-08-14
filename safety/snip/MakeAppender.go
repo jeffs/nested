@@ -1,5 +1,3 @@
-// Go MakeAppender
-
 func MakeAppender(suffix []int) func([]int) []int {
 	return func(items []int) []int {
 		return Append(items, suffix)

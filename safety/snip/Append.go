@@ -1,5 +1,3 @@
-// Go Append
-
 func Append(items, suffix []int) []int {
 	return append(items, suffix...)
 }

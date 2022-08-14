@@ -1,5 +1,3 @@
-// Rust make_appender
-
 pub fn make_appender(suffix: &[i32]) -> impl Fn(Vec<i32>) -> Vec<i32> + '_ {
     |items| append(items, suffix)
 }

@@ -1,5 +1,3 @@
-// Rust append
-
 pub fn append(mut items: Vec<i32>, suffix: &[i32]) -> Vec<i32> {
     items.extend_from_slice(suffix);
     items

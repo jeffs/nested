@@ -1,5 +1,3 @@
-// Go silently allows a subtle gotcha.
-
 func TestMakeAppenderMutate(t *testing.T) {
 	t.Skip()
 	suffix := []int{3, 4}

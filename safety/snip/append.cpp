@@ -1,5 +1,3 @@
-// C++ append
-
 std::vector<int> append(
         std::vector<int>&& items,
         std::vector<int> const& suffix) {
