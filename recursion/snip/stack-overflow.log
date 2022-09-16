@@ -1,0 +1,5 @@
+$ cargo run --quiet --release
+
+thread 'main' has overflowed its stack
+fatal runtime error: stack overflow
+[1]    9275 IOT instruction  cargo run --quiet --release
