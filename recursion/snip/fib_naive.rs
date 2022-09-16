@@ -1,4 +1,4 @@
-fn fib_naive(n: u32) -> u32 {
+fn fib_naive(n: u64) -> u64 {
     if n < 2 {
         n
     } else {

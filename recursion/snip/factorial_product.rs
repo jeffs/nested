@@ -1,3 +1,3 @@
-fn factorial_product(n: u32) -> u32 {
-    (1..=n).product()
+fn factorial_product(n: u64) -> u64 {
+    (2..=n).product()
 }

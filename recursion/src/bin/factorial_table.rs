@@ -9,3 +9,8 @@ const FACTORIALS: [u64; 21] = [
 fn factorial_table(n: u64) -> u64 {
     FACTORIALS[n as usize]
 }
+
+fn main() {
+    assert_eq!(factorial_table(0), 1);
+    assert_eq!(factorial_table(20), 2432902008176640000);
+}
