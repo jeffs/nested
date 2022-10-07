@@ -1,0 +1,4 @@
+$ scalac Main.scala && scala Main
+2
+x initializer
+1

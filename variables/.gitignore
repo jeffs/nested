@@ -1,3 +1,4 @@
 target/
 var/
 *.class
+*.tasty
