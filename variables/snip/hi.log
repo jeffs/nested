@@ -1,0 +1,2 @@
+$ cc -std=c11 -pedantic -Wall -Wextra hi.c && ./a.out
+Hi
