@@ -1,0 +1,4 @@
+target/
+var/
+*.class
+*.tasty
