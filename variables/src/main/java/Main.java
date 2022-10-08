@@ -6,8 +6,8 @@ class Main {
 		var i = 42;
 		var j = i;
 		j += 1;
-		assert i == 42;		// OK
 		assert i != j;		// OK
+		assert i == 42;		// OK
 
 		var xs = new ArrayList<>(List.of(42));
 		var ys = xs;
