@@ -3,5 +3,5 @@
 version = 3
 
 [[package]]
-name = "stupid-integer-trick"
+name = "silly-integer-trick"
 version = "0.1.0"
