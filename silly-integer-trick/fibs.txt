@@ -1,0 +1,9 @@
+                    # The first two numbers are 0 and 1, by definition.
+0 + 1 = 1           # The third is the sum of the previous two...
+    1 + 1 = 2       # ... and so on.
+        1 + 2 = 3
+            2 + 3 = 5
+                3 + 5 = 8
+                    5 + 8 = 13
+                        8 + 13 = 21
+                            13 + 21 = 34
